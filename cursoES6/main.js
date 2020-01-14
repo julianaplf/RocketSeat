@@ -9,15 +9,20 @@ class List {
     add(data) {
         this.data.push(data);
     }
-    renderTodos(){
+    renderTodos() {
         var listEl = document.querySelector('#list');
         listEl.innerHTML = '';
         var todos = this.data;
-        for(var i=0; i<todos.length; i++){
+        /* for(var i=0; i<todos.length; i++){
             var liEl = document.createElement('li');
             liEl.appendChild(document.createTextNode(todos[i]));
             listEl.appendChild(liEl);
-        }
+        } */
+        todos.map(function (item) {
+            var liEl = document.createElement('li');
+            liEl.appendChild(document.createTextNode(item));
+            listEl.appendChild(liEl);
+        })
     }
 }
 
@@ -33,3 +38,27 @@ document.getElementById('novotodo').onclick = function () {
     inputEl.value = '';
     MinhaLista.renderTodos();
 }
+
+// testando reduce pra validações, como fazemos em tela com o sf:
+/* var allValid = cmp.find('field').reduce(function (validSoFar, inputCmp) {
+    inputCmp.showHelpMessageIfInvalid();
+    return validSoFar && inputCmp.get('v.validity').valid;
+ }, true); */
+
+var arr = ['oi', 2, 0, undefined];
+
+const resultado = arr.reduce(function (validSoFar, next) {
+    if (!next) {
+        validSoFar = false;
+    }
+    return validSoFar;
+}, true);
+
+//if(!resultado) alert('o array possui valores falsy')
+
+// testando filter pra somente retornar os valores q nao sao "falsy"
+const filter = arr.filter(function(item){
+return item ? item : ''; 
+});
+
+console.log(filter);
