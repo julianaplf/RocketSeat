@@ -18,11 +18,16 @@ class List {
             liEl.appendChild(document.createTextNode(todos[i]));
             listEl.appendChild(liEl);
         } */
-        todos.map(function (item) {
+        /* todos.map(function (item) {
             var liEl = document.createElement('li');
             liEl.appendChild(document.createTextNode(item));
             listEl.appendChild(liEl);
-        })
+        }) */
+        for(var todo of todos){
+            var liEl = document.createElement('li');
+            liEl.appendChild(document.createTextNode(todo));
+            listEl.appendChild(liEl);
+        }
     }
 }
 
@@ -62,3 +67,21 @@ return item ? item : '';
 });
 
 console.log(filter);
+
+//arrow function
+const newArr = arr.map(item => item * 2);
+
+console.log(newArr);
+
+//desestruturação
+const usuario = {
+    nome : 'juliana',
+    idade : '33',
+    endereco: {
+        cidade: "Recife"
+    }
+}
+
+const { nome, endereco:{cidade} }  = usuario;
+console.log(nome + ' ' + cidade);
+
