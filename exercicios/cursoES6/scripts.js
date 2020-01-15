@@ -104,3 +104,27 @@ console.log(estado);
 
 const mostraInfo = ({ nome , idade}) => `${nome} tem ${idade} anos.`
 console.log(mostraInfo(usuario));
+
+//Exercício 5
+const arr2 = [1, 2, 3, 4, 5, 6];
+const [x, ...y] = arr2;
+console.log(x);
+console.log(y);
+
+const soma = (...params) => params.reduce((total , next) => total + next);
+console.log(soma(1,2,3,4,5));
+
+const usuarioNovo = {
+    nome: 'Diego',
+    idade: 23,
+    endereco: {
+    cidade: 'Rio do Sul',
+    uf: 'SC',
+    pais: 'Brasil',
+    }
+   };
+
+   const usuarioSpread = { ...usuarioNovo, nome: 'Gabriel'}
+   const usuarioSpread2 = { ...usuarioNovo, endereco: { ...usuarioNovo.endereco, cidade: 'Lontras'}};
+   console.log(usuarioSpread);
+   console.log(usuarioSpread2);
