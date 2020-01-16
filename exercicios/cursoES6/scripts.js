@@ -7,26 +7,25 @@ class Usuario {
         this.admin = false;
     }
     isAdmin() {
-        var retorno = false;
-        if (this.admin) {
-            retorno = true;
-        }
-        return retorno;
+        return this.admin;
+    }
+    setAdmin(valor){
+        this.admin = valor;
     }
 }
 
 class Admin extends Usuario {
     constructor(email, senha) {
         super(email, senha);
-        this.admin = true;
+        super.setAdmin(true);
     }
 }
 
 const User1 = new Usuario('email@teste.com', 'senha123');
 const Adm1 = new Admin('email@teste.com', 'senha123');
 
-console.log(User1.isAdmin()) // false
-console.log(Adm1.isAdmin()) // true
+console.log(User1.isAdmin() + ' usuario') // false
+console.log(Adm1.isAdmin() + ' adm') // true
 
 //exercicio 2
 const usuarios = [
