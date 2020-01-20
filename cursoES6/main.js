@@ -85,3 +85,6 @@ const usuario = {
 const { nome, endereco:{cidade} }  = usuario;
 console.log(nome + ' ' + cidade);
 
+//testando webpack
+import { soma } from './funcoes'
+console.log('soma: ' + soma(1,2));
