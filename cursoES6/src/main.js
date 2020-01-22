@@ -102,7 +102,7 @@ const minhaPromise = () =>
       resolve("OK");
     }, 2000);
   });
-  
+
 // chamando promise normal
 /*
 minhaPromise()
@@ -127,3 +127,40 @@ const executarPromiseArrow = async () => {
 };
 
 executarPromiseArrow();
+
+import axios from "axios";
+class Api {
+  static async getUserInfo(username) {
+    try {
+      const response = await axios.get(
+        `https://api.github.com/users/${username}`
+      );
+      console.log(response);
+    } catch(err){
+        console.log('Deu ruim');
+    }
+  }
+}
+//ok
+Api.getUserInfo("julianaplf");
+//err
+Api.getUserInfo("julaasaianaplf");
+
+// import
+
+import * as test from '../desafioRS';
+test.umPorSegundo();
+
+// exercicios
+class Github {
+    static async getRepositories(user, repo) {
+        try{
+            const response = await axios.get(`https://api.github.com/repos/${user}/${repo}`);
+            console.log(response.data);
+        } catch (err){
+            console.log('deu ruim');
+        }
+   }
+}
+Github.getRepositories('julianaplf', 'CursoiOS');
+
