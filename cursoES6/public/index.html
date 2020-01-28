@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso ES6</title>
 </head>
+
 <body>
-    <!-- <input type="text" id="inputTodo"/>
-    <button id='novotodo'>Adicionar</button>
-    <ul id="list"></ul> -->
+    <style>
+        #repo-list {
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        #repo-list li {
+            list-style: none;
+            background-color: #f1f1f1;
+            min-height: 60px;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #repo-list li img {
+            width: 60px;
+            height: 60px;
+            float: left;
+            margin-right: 10px;
+        }
+
+        #repo-list li p {
+            margin: 0;
+        }
+    </style>
     <form id="repo-form">
-        <input type="text" id="user"/>
-        <select name="" id="repository"></select> 
+        <input type="text" id="user" />
+        <select name="" id="repository"></select>
         <button id='submitRepo'>Adicionar</button>
     </form>
-    
+
     <ul id="repo-list"></ul>
 
     <script src="./bundle.js"></script>
 </body>
+
 </html>
