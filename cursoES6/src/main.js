@@ -16,9 +16,17 @@ async function getRepositories(event) {
     var repNames = [];
 
     if (!sessionStorage.getItem(user)) {
-      response = await axios.get(`https://api.github.com/users/${user}/repos`);
-      sessionStorage.setItem(user, JSON.stringify(response.data));
-      repNames = response.data.map(({ name }) => name);
+      try {
+        response = await axios.get(
+          `https://api.github.com/users/${user}/repos`
+        );
+        sessionStorage.setItem(user, JSON.stringify(response.data));
+        repNames = response.data.map(({ name }) => name);
+      } catch (err) {
+        alert('Usuário não encontrado');
+        inputElement.value = "";
+        selectElement.innerHTML = "";
+      }
     } else {
       var localData = JSON.parse(sessionStorage.getItem(user));
       repNames = localData.map(({ name }) => name);
@@ -44,20 +52,22 @@ function addRepository(event) {
   if (user && repo) {
     if (sessionStorage.getItem(user)) {
       localData = JSON.parse(sessionStorage.getItem(user));
-      var filtro = localData.filter(({name, description, html_url, owner : {avatar_url}}) => name == repo)[0];
+      var filtro = localData.filter(
+        ({ name, description, html_url, owner: { avatar_url } }) => name == repo
+      )[0];
 
-      var liElement = document.createElement('li');
+      var liElement = document.createElement("li");
 
-      var imgEl = document.createElement('img');
-      imgEl.setAttribute('src', filtro.owner.avatar_url);
+      var imgEl = document.createElement("img");
+      imgEl.setAttribute("src", filtro.owner.avatar_url);
 
-      var titleEl = criaElementos('strong', filtro.name);
-      var parEl = criaElementos('p', filtro.description);
-      var linkEl = criaElementos('a','Ir para o repositório', filtro.html_url);
+      var titleEl = criaElementos("strong", filtro.name);
+      var parEl = criaElementos("p", filtro.description);
+      var linkEl = criaElementos("a", "Ir para o repositório", filtro.html_url);
 
       elementsToAdd.push(imgEl, titleEl, parEl, linkEl);
-      for(var e of elementsToAdd){
-        liElement.appendChild(e); 
+      for (var e of elementsToAdd) {
+        liElement.appendChild(e);
       }
       repoList.append(liElement);
     }
@@ -66,16 +76,16 @@ function addRepository(event) {
   }
 }
 
-function criaElementos(el, text, link){
-    var element = document.createElement(el);
-    element.appendChild(document.createTextNode(text));
+function criaElementos(el, text, link) {
+  var element = document.createElement(el);
+  element.appendChild(document.createTextNode(text));
 
-    if(el == 'a' && link){
-        element.setAttribute('target', '_blank');
-        element.setAttribute('href', link);
-    }
+  if (el == "a" && link) {
+    element.setAttribute("target", "_blank");
+    element.setAttribute("href", link);
+  }
 
-    return element;
+  return element;
 }
 
 btElement.onclick = addRepository;
